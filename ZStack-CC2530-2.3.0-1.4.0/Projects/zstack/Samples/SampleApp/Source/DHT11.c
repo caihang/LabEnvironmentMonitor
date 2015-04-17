@@ -1,22 +1,22 @@
 #include "DHT11.h"
 
-//Êı¾İ¶¨Òå
-uchar ucharFLAG, uchartemp;   //uchartempÊÇÃ¿´Î¶ÁÈ¡µÄÎ»Öµ
+//æ•°æ®å®šä¹‰
+uchar ucharFLAG, uchartemp;   //uchartempæ˜¯æ¯æ¬¡è¯»å–çš„ä½å€¼
 uchar ucharT_data_H = 0, ucharT_data_L = 0, ucharRH_data_H = 0, ucharRH_data_L = 0, ucharcheckdata;
 uchar ucharT_data_H_temp, ucharT_data_L_temp, ucharRH_data_H_temp, ucharRH_data_L_temp, ucharcheckdata_temp;
 uchar ucharcomdata;
 
-void Delay_us(void) //1 usÑÓÊ±
+void Delay_us(void) //1 uså»¶æ—¶
 {
     MicroWait(1);   
 }
 
-void Delay_10us(void) //10 usÑÓÊ±
+void Delay_10us(void) //10 uså»¶æ—¶
 {
    MicroWait(10);
 }
 
-void Delay_ms(uint Time)//n msÑÓÊ±
+void Delay_ms(uint Time)//n mså»¶æ—¶
 {
   unsigned char i;
   while(Time--)
@@ -26,59 +26,69 @@ void Delay_ms(uint Time)//n msÑÓÊ±
   }
 }
 
-void Read(void)    // ÎÂÊªĞ´Èë
+void Read(void)    // æ¸©æ¹¿å†™å…¥
 {     
     uchar i;         
     for(i=0;i<8;i++)    
     {
         ucharFLAG = 2; 
         while((!DATA_PIN)&&ucharFLAG++);
-        Delay_10us();  //ÑÓÊ±30usºóÈç¹û»¹ÊÇ¸ßµçÆ½£¬Ôò´ËÎ»Îª1£¬·ñÔòÎª0
+        Delay_10us();  //å»¶æ—¶30usåå¦‚æœè¿˜æ˜¯é«˜ç”µå¹³ï¼Œåˆ™æ­¤ä½ä¸º1ï¼Œå¦åˆ™ä¸º0
         Delay_10us();
         Delay_10us();
         uchartemp=0;
-        if(DATA_PIN)uchartemp=1;   //Èç¹û»¹ÊÇ¸ßµçÆ½£¬Ôòuchartemp = 1£¬·ñÔòÖµ²»±äÎª0
+        if(DATA_PIN)uchartemp=1;   //å¦‚æœè¿˜æ˜¯é«˜ç”µå¹³ï¼Œåˆ™uchartemp = 1ï¼Œå¦åˆ™å€¼ä¸å˜ä¸º0
         ucharFLAG=2;
-        while((DATA_PIN)&&ucharFLAG++);    //µÈ´ıÊ£Óà¸ßµçÆ½½áÊø
+        while((DATA_PIN)&&ucharFLAG++);    //ç­‰å¾…å‰©ä½™é«˜ç”µå¹³ç»“æŸ
         if(ucharFLAG==1)break;       
         ucharcomdata<<=1;         
-        ucharcomdata|=uchartemp;   //Êı¾İ×îĞÂÎ»¸³Öµ
+        ucharcomdata|=uchartemp;   //æ•°æ®æœ€æ–°ä½èµ‹å€¼
     }    
 }
 
+<<<<<<< HEAD
 void DHT11(uchar sd[3], uchar wd[3])   //ÎÂÊª´«¸ĞÆô¶¯
 {
   DATA_PIN=0;    //Êä³öµÍµçÆ½
   Delay_ms(19);  //Ğè´óÓÚ18ms
   DATA_PIN=1;    //Êä³ö¸ßµçÆ½
   P0DIR &= ~0x80;                 //ÅäÖÃP0.7¿Ú·½ÏòÎªÊäÈë
+=======
+void DHT11(uchar *SD_H, uchar *SD_L, uchar *WD_H, uchar *WD_L)   //æ¸©æ¹¿ä¼ æ„Ÿå¯åŠ¨
+{
+  P0DIR &= ~0x80;                 //é…ç½®P0.7å£æ–¹å‘ä¸ºè¾“å…¥
   
-  Delay_10us();  //ÑÓÊ±20-40us,µÈ´ıÒ»¶ÎÊ±¼äºó¼ì²âÓ¦´ğĞÅºÅ,Ó¦´ğĞÅºÅÊÇ´Ó»úÀ­µÍÊı¾İÏß80us£¬¼ì²âÓ¦´ğĞÅºÅ£¬Ó¦´ğĞÅºÅÊÇµÍµçÆ½
+  DATA_PIN=0;    //è¾“å‡ºä½ç”µå¹³
+  Delay_ms(20);  //éœ€å¤§äº18ms
+  DATA_PIN=1;    //è¾“å‡ºé«˜ç”µå¹³
+>>>>>>> origin/master
+  
+  Delay_10us();  //å»¶æ—¶20-40us,ç­‰å¾…ä¸€æ®µæ—¶é—´åæ£€æµ‹åº”ç­”ä¿¡å·,åº”ç­”ä¿¡å·æ˜¯ä»æœºæ‹‰ä½æ•°æ®çº¿80usï¼Œæ£€æµ‹åº”ç­”ä¿¡å·ï¼Œåº”ç­”ä¿¡å·æ˜¯ä½ç”µå¹³
   Delay_10us();                        
   Delay_10us();
   Delay_10us(); 
   
-  if(!DATA_PIN)   //Èç¹ûÊÇÓ¦´ğĞÅºÅ
+  if(!DATA_PIN)   //å¦‚æœæ˜¯åº”ç­”ä¿¡å·
   {
     ucharFLAG = 2; 
-    while((!DATA_PIN)&&ucharFLAG++);   //µÈ´ıÓ¦´ğĞÅºÅÍê±Ï
+    while((!DATA_PIN)&&ucharFLAG++);   //ç­‰å¾…åº”ç­”ä¿¡å·å®Œæ¯•
     ucharFLAG = 2;
-    while((DATA_PIN)&&ucharFLAG++);    //Ó¦´ğĞÅºÅÍêºó»áÓĞ80usµÄ¸ßµçÆ½£¬´Ë´¦µÈ´ı¸ßµçÆ½½áÊø
+    while((DATA_PIN)&&ucharFLAG++);    //åº”ç­”ä¿¡å·å®Œåä¼šæœ‰80usçš„é«˜ç”µå¹³ï¼Œæ­¤å¤„ç­‰å¾…é«˜ç”µå¹³ç»“æŸ
     
-    Read();                             //¶ÁÈ¡Êª¶È¸ß8Î»
+    Read();                             //è¯»å–æ¹¿åº¦é«˜8ä½
     ucharRH_data_H_temp = ucharcomdata;
-    Read();                            //¶ÁÈ¡Êª¶ÈµÍ8Î»
+    Read();                            //è¯»å–æ¹¿åº¦ä½8ä½
     ucharRH_data_L_temp = ucharcomdata;
-    Read();                            //¶ÁÈ¡ÎÂ¶È¸ß8Î»
+    Read();                            //è¯»å–æ¸©åº¦é«˜8ä½
     ucharT_data_H_temp = ucharcomdata;
-    Read();                            //¶ÁÈ¡ÎÂ¶ÈµÍ8Î»
+    Read();                            //è¯»å–æ¸©åº¦ä½8ä½
     ucharT_data_L_temp = ucharcomdata;
-    Read();                            //Ğ£Ñé
+    Read();                            //æ ¡éªŒ
     ucharcheckdata_temp = ucharcomdata;
-    DATA_PIN=1;                        //À­¸ßÒı½Å
+    DATA_PIN=1;                        //æ‹‰é«˜å¼•è„š
     
     uchartemp=(ucharT_data_H_temp+ucharT_data_L_temp+ucharRH_data_H_temp+ucharRH_data_L_temp);
-    if(uchartemp==ucharcheckdata_temp)      //Èç¹ûĞ£ÑéºÍÕıÈ·
+    if(uchartemp==ucharcheckdata_temp)      //å¦‚æœæ ¡éªŒå’Œæ­£ç¡®
     {
       ucharRH_data_H = ucharRH_data_H_temp;
       ucharRH_data_L = ucharRH_data_L_temp;
@@ -87,18 +97,26 @@ void DHT11(uchar sd[3], uchar wd[3])   //ÎÂÊª´«¸ĞÆô¶¯
       ucharcheckdata = ucharcheckdata_temp;
     }
     
+<<<<<<< HEAD
     wd[0] = ucharT_data_H/10 + 0x30;    //Èç¹ûĞ£ÑéºÍÕıÈ·Ôò»áµÃµ½ÕıÈ·Öµ£¬·ñÔòÖµÈ«Îª0
     wd[1] = ucharT_data_H%10 + 0x30;
     wd[2] = '\0';
     sd[0] = ucharRH_data_H/10 + 0x30; 
     sd[1] = ucharRH_data_H%10 + 0x30; 
     sd[2] = '\0';
+=======
+    *WD_H = ucharT_data_H/10 + 0x30;    //å¦‚æœæ ¡éªŒå’Œæ­£ç¡®åˆ™ä¼šå¾—åˆ°æ­£ç¡®å€¼ï¼Œå¦åˆ™å€¼å…¨ä¸º0
+    *WD_L = ucharT_data_H%10 + 0x30;
+    
+    *SD_H = ucharRH_data_H/10 + 0x30; 
+    *SD_L = ucharRH_data_H%10 + 0x30;        
+>>>>>>> origin/master
   } 
-  else //Ã»ÓĞ¼ì²âµ½Ó¦´ğĞÅºÅ£¬·µ»Ø0
+  else //æ²¡æœ‰æ£€æµ‹åˆ°åº”ç­”ä¿¡å·ï¼Œè¿”å›0
   {
       osal_memcpy(wd, "fff", 3);
       osal_memcpy(sd, "fff", 3);
   } 
   
-  P0DIR |= 0x80; //IO¿ÚĞèÒªÖØĞÂÅäÖÃ 
+  P0DIR |= 0x80; //IOå£éœ€è¦é‡æ–°é…ç½® 
 }
