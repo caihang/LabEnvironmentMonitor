@@ -115,22 +115,18 @@ void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
 void SampleApp_Send_The_Message(void)
 {
   RFDATA rfdata;
-  uint8 WD_H, WD_L, SD_H, SD_L;
+  uint8 WD[3], SD[3];
   uint8 MQStatus;
   
-  DHT11(&SD_H, &SD_L, &WD_H, &WD_L);
-  MQStatus = readMQ();
+  DHT11(SD, WD);
+  readMQ(&MQStatus);
   
   rfdata.rfbuf.Head = '#';
   To_String(rfdata.rfbuf.IEEEAddr, NLME_GetExtAddr(), 8);  //获取自己的IEEE节点信息
   rfdata.rfbuf.Nop1 = '#';
-  rfdata.rfbuf.temperature[0] = '0';
-  rfdata.rfbuf.temperature[1] = WD_H;
-  rfdata.rfbuf.temperature[2] = WD_L;
+  osal_memcpy(rfdata.rfbuf.temperature, WD, 3);
   rfdata.rfbuf.Nop2 = '#';
-  rfdata.rfbuf.hummidity[0] = '0';
-  rfdata.rfbuf.hummidity[1] = SD_H;
-  rfdata.rfbuf.hummidity[2] = SD_L;
+  osal_memcpy(rfdata.rfbuf.hummidity, SD, 3);
   rfdata.rfbuf.Nop3 = '#';
   rfdata.rfbuf.MQstatus = MQStatus;
   rfdata.rfbuf.Tail = '*';

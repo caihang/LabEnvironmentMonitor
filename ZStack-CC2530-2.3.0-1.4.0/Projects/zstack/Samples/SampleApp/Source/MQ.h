@@ -8,5 +8,5 @@
 typedef unsigned char uchar;
 typedef unsigned int  uint;
 
-extern uchar readMQ(void);
+extern void readMQ(uchar *mqstatus);
 #endif

@@ -1,0 +1,333 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         17/Apr/2015  19:08:01 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\Source\MQ.c                   #
+#    Command line       =  -f D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC #
+#                          2530DB\f8wEndev.cfg (-DCPU32MHZ                    #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC253 #
+#                          0DB\f8wConfig.cfg (-DSECURE=0                      #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF1                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\Source\MQ.c -D ZIGBEEPRO -D   #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D           #
+#                          xMT_SYS_FUNC -D xMT_ZDO_FUNC -lC                   #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\EndDeviceEB-Pro\List #
+#                          \ -lA D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\EndDeviceEB-Pr #
+#                          o\List\ --diag_suppress Pe001,Pa010 -o             #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\EndDeviceEB-Pro\Obj\ #
+#                           -e --debug --core=plain --dptr=16,1               #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\ -I               #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\SOURCE\ -I        #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\ZMAIN\TI253 #
+#                          0DB\ -I D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Proje #
+#                          cts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\ #
+#                          ..\COMPONENTS\MT\ -I D:\sys\sys\ZStack-CC2530-2.3. #
+#                          0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB #
+#                          \..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I         #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\HAL\TARGET\CC2530EB\ -I                      #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\OSAL\MCU\CCSOC\ -I                           #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\OSAL\INCLUDE\ -I D:\sys\sys\ZStack-CC2530-2. #
+#                          3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\..\..\..\..\..\COMPONENTS\STACK\AF\ -I          #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\STACK\NWK\ -I D:\sys\sys\ZStack-CC2530-2.3.0 #
+#                          -1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SEC\ -I            #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\STACK\SAPI\ -I D:\sys\sys\ZStack-CC2530-2.3. #
+#                          0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB #
+#                          \..\..\..\..\..\COMPONENTS\STACK\SYS\ -I           #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\STACK\ZDO\ -I D:\sys\sys\ZStack-CC2530-2.3.0 #
+#                          -1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I             #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\ZMAC\ -I D:\sys\sys\ZStack-CC2530-2.3.0-1.4. #
+#                          0\Projects\zstack\Samples\SampleApp\CC2530DB\..\.. #
+#                          \..\..\..\COMPONENTS\SERVICES\SADDR\ -I            #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\SERVICES\SDATA\ -I                           #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\MAC\INCLUDE\ -I D:\sys\sys\ZStack-CC2530-2.3 #
+#                          .0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530D #
+#                          B\..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I     #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\MAC\LOW_LEVEL\srf04\ -I                      #
+#                          D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz        #
+#    List file          =  D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\EndDeviceEB-Pro\List #
+#                          \MQ.lst                                            #
+#    Object file        =  D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\EndDeviceEB-Pro\Obj\ #
+#                          MQ.r51                                             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\sys\sys\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\Source\MQ.c
+      1          #include "MQ.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+      2          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      3          void Delay_MS(uint msec)
+   \                     Delay_MS:
+      4          { 
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+      5              uint i,j;
+      6              
+      7              for (i=0; i<msec; i++)
+   \   000000   7800         MOV     R0,#0x0
+   \   000002   7900         MOV     R1,#0x0
+   \   000004   8008         SJMP    ??Delay_MS_0
+      8                  for (j=0; j<535; j++);
+   \                     ??Delay_MS_1:
+   \   000006   E8           MOV     A,R0
+   \   000007   2401         ADD     A,#0x1
+   \   000009   08           INC     R0
+   \   00000A   E9           MOV     A,R1
+   \   00000B   3400         ADDC    A,#0x0
+   \   00000D   F9           MOV     R1,A
+   \                     ??Delay_MS_0:
+   \   00000E   C3           CLR     C
+   \   00000F   E8           MOV     A,R0
+   \   000010   9A           SUBB    A,R2
+   \   000011   E9           MOV     A,R1
+   \   000012   9B           SUBB    A,R3
+   \   000013   40F1         JC      ??Delay_MS_1
+      9          }
+   \   000015   02....       LJMP    ?BRET
+     10          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     11          void InitGpio(void)
+   \                     InitGpio:
+     12          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     13            P1SEL &= ~0x01;              //P1.0为普通IO口
+   \   000000   53F4FE       ANL     0xf4,#0xfe
+     14            P1DIR |= 0x01;               //P1.0定义为输出口
+   \   000003   43FE01       ORL     0xfe,#0x1
+     15            P0SEL &= ~0x20;              //P0.5为普通IO口
+   \   000006   53F3DF       ANL     0xf3,#0xdf
+     16            P0DIR &= ~0x20;              //P0.5定义为输入口
+   \   000009   53FDDF       ANL     0xfd,#0xdf
+     17          }
+   \   00000C   02....       LJMP    ?BRET
+   \   00000F                REQUIRE P1SEL
+   \   00000F                REQUIRE P1DIR
+   \   00000F                REQUIRE P0SEL
+   \   00000F                REQUIRE P0DIR
+     18          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     19          void readMQ(uchar *mqstatus)
+   \                     readMQ:
+     20          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     21            uint i=0;
+     22              
+     23            InitGpio();                   //设置LED灯和MQ2相应的IO口
+   \   000009                ; Setup parameters for call to function InitGpio
+   \   000009   12....       LCALL   ??InitGpio?relay
+     24          
+     25            LED1 = 1;                    //熄灭P1.0口灯 
+   \   00000C   D290         SETB    0x90.0
+     26            Delay_MS(100);                //延时一段时间，让传感器多一些时间去感应
+   \   00000E                ; Setup parameters for call to function Delay_MS
+   \   00000E   7A64         MOV     R2,#0x64
+   \   000010   7B00         MOV     R3,#0x0
+   \   000012   12....       LCALL   ??Delay_MS?relay
+     27            if(DATA_PIN_YW == 0)            //当浓度高于设定值时 ，执行条件函数        
+   \   000015   A285         MOV     C,0x80.5
+   \   000017   4021         JC      ??readMQ_0
+     28            {
+     29              Delay_MS(10);               //延时抗干扰
+   \   000019                ; Setup parameters for call to function Delay_MS
+   \   000019   7A0A         MOV     R2,#0xa
+   \   00001B   7B00         MOV     R3,#0x0
+   \   00001D   12....       LCALL   ??Delay_MS?relay
+     30              if(DATA_PIN_YW == 0)         //确定 浓度高于设定值时 ，执行条件函数
+   \   000020   A285         MOV     C,0x80.5
+   \   000022   4016         JC      ??readMQ_0
+     31              {
+     32                for (i=0; i<10; i++)
+   \   000024   740A         MOV     A,#0xa
+     33                {
+     34                    LED1 = ~LED1;       //闪烁LED1，提示用户
+   \                     ??readMQ_1:
+   \   000026   D2F0         SETB    B.0
+   \   000028   A290         MOV     C,0x90.0
+   \   00002A   30F001       JNB     B.0,??readMQ_2
+   \   00002D   B3           CPL     C
+   \                     ??readMQ_2:
+   \   00002E   9290         MOV     0x90.0,C
+     35                }
+   \   000030   14           DEC     A
+   \   000031   70F3         JNZ     ??readMQ_1
+     36                *mqstatus = '1';               //返回1表示TURE有警告情况
+   \   000033   8E82         MOV     DPL,R6
+   \   000035   8F83         MOV     DPH,R7
+   \   000037   7431         MOV     A,#0x31
+   \   000039   F0           MOVX    @DPTR,A
+     37              }
+     38            }
+     39            *mqstatus = '0';              //当浓度正常时返回0表示无警告情况
+   \                     ??readMQ_0:
+   \   00003A   8E82         MOV     DPL,R6
+   \   00003C   8F83         MOV     DPH,R7
+   \   00003E   7430         MOV     A,#0x30
+   \   000040   F0           MOVX    @DPTR,A
+     40          }
+   \   000041   7F01         MOV     R7,#0x1
+   \   000043   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000046                REQUIRE _A_P1
+   \   000046                REQUIRE _A_P0
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Delay_MS?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Delay_MS
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??InitGpio?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    InitGpio
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??readMQ?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    readMQ
+
+   Maximum stack usage in bytes:
+
+     Function      ISTACK PSTACK XSTACK
+     --------      ------ ------ ------
+     Delay_MS          0      0      9
+     InitGpio          0      0      9
+     readMQ            0      0      9
+       -> InitGpio     0      0     18
+       -> Delay_MS     0      0     18
+       -> Delay_MS     0      0     18
+
+
+   Segment part sizes:
+
+     Function/Label   Bytes
+     --------------   -----
+     _A_P0               1
+     _A_P1               1
+     P0SEL               1
+     P1SEL               1
+     P0DIR               1
+     P1DIR               1
+     Delay_MS           24
+     InitGpio           15
+     readMQ             70
+     ??Delay_MS?relay    6
+     ??InitGpio?relay    6
+     ??readMQ?relay      6
+
+ 
+ 109 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+   6 bytes in segment SFR_AN
+ 
+ 127 bytes of CODE memory
+   0 bytes of DATA memory (+ 6 bytes shared)
+
+Errors: none
+Warnings: none

@@ -46,13 +46,12 @@ void Read(void)    // 温湿写入
     }    
 }
 
-void DHT11(uchar *SD_H, uchar *SD_L, uchar *WD_H, uchar *WD_L)   //温湿传感启动
+void DHT11(uchar sd[3], uchar wd[3])   //温湿传感启动
 {
-  P0DIR &= ~0x80;                 //配置P0.7口方向为输入
-  
   DATA_PIN=0;    //输出低电平
-  Delay_ms(20);  //需大于18ms
+  Delay_ms(19);  //需大于18ms
   DATA_PIN=1;    //输出高电平
+  P0DIR &= ~0x80;                 //配置P0.7口方向为输入
   
   Delay_10us();  //延时20-40us,等待一段时间后检测应答信号,应答信号是从机拉低数据线80us，检测应答信号，应答信号是低电平
   Delay_10us();                        
@@ -88,15 +87,17 @@ void DHT11(uchar *SD_H, uchar *SD_L, uchar *WD_H, uchar *WD_L)   //温湿传感启动
       ucharcheckdata = ucharcheckdata_temp;
     }
     
-    *WD_H = ucharT_data_H/10;    //如果校验和正确则会得到正确值，否则值全为0
-    *WD_L = ucharT_data_H%10;
-    
-    *SD_H = ucharRH_data_H/10; 
-    *SD_L = ucharRH_data_H%10;        
+    wd[0] = ucharT_data_H/10 + 0x30;    //如果校验和正确则会得到正确值，否则值全为0
+    wd[1] = ucharT_data_H%10 + 0x30;
+    wd[2] = '\0';
+    sd[0] = ucharRH_data_H/10 + 0x30; 
+    sd[1] = ucharRH_data_H%10 + 0x30; 
+    sd[2] = '\0';
   } 
   else //没有检测到应答信号，返回0
   {
-      *WD_H = *WD_L = *SD_H = *SD_L = 0;   
+      osal_memcpy(wd, "fff", 3);
+      osal_memcpy(sd, "fff", 3);
   } 
   
   P0DIR |= 0x80; //IO口需要重新配置 

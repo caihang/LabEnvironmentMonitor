@@ -106,6 +106,7 @@ uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
           SampleApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
           if ( SampleApp_NwkState == DEV_ZB_COORD )
           {
+            //osal_set_event( SampleApp_TaskID, SAMPLEAPP_SEND_TO_ALL );
             osal_start_timerEx( SampleApp_TaskID, SAMPLEAPP_SEND_TO_ALL, 60000 );        //每一分钟广播一次信息
           }
           break;
@@ -145,7 +146,7 @@ void SampleApp_Send_The_Message(void)
 {
   RFDATA rfdata;
   osal_memcpy(rfdata.RFbuf, "&00000000C000J000S0J", 20);
-  AF_DataRequest( &SampleApp_Periodic_DstAddr, &SampleApp_epDesc, SAMPLEAPP_PERIODIC_CLUSTERID, 20, (uint8 *)&rfdata, &SampleApp_TransID,  
+  AF_DataRequest( &SampleApp_Periodic_DstAddr, &SampleApp_epDesc, SAMPLEAPP_PERIODIC_CLUSTERID, 20, (uint8 *)&rfdata.RFbuf, &SampleApp_TransID,  
                  AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
 }
 

@@ -16,7 +16,7 @@ void InitGpio(void)
   P0DIR &= ~0x20;              //P0.5定义为输入口
 }
 
-uchar readMQ(void)
+void readMQ(uchar *mqstatus)
 {
   uint i=0;
     
@@ -33,8 +33,8 @@ uchar readMQ(void)
       {
           LED1 = ~LED1;       //闪烁LED1，提示用户
       }
-      return 1;               //返回1表示TURE有警告情况
+      *mqstatus = '1';               //返回1表示TURE有警告情况
     }
   }
-  return 0;              //当浓度正常时返回0表示无警告情况
+  *mqstatus = '0';              //当浓度正常时返回0表示无警告情况
 }
